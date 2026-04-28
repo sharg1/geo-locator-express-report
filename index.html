@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="robots" content="noindex, nofollow">
-<title>Geo Locator Express — Global Production Report (Apr 27–30, 2026)</title>
+<title>Geo Locator Express — Global Production Report (Apr 27–29, 2026)</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -14,16 +14,11 @@
   header h1 { font-size: 1.6rem; font-weight: 700; }
   header p { font-size: 0.9rem; opacity: 0.85; margin-top: 4px; }
 
-  /* ── Metric Tabs ── */
   .tabs-bar { background: white; border-bottom: 1px solid #eee; padding: 0 40px; display: flex; gap: 4px; }
-  .tab-btn {
-    padding: 14px 22px; font-size: 0.875rem; font-weight: 600; border: none; background: none;
-    cursor: pointer; color: #888; border-bottom: 3px solid transparent; transition: color .2s, border-color .2s;
-  }
+  .tab-btn { padding: 14px 22px; font-size: 0.875rem; font-weight: 600; border: none; background: none; cursor: pointer; color: #888; border-bottom: 3px solid transparent; transition: color .2s, border-color .2s; }
   .tab-btn:hover { color: #1a1a2e; }
   .tab-btn.active { color: #e0193d; border-bottom-color: #e0193d; }
 
-  /* ── Layout ── */
   .tab-panel { display: none; }
   .tab-panel.active { display: block; }
   .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding: 32px 40px; max-width: 1400px; margin: 0 auto; }
@@ -39,13 +34,9 @@
   .kpi .value { font-size: 2rem; font-weight: 700; margin-top: 4px; color: #1a1a2e; }
   .kpi .sub { font-size: 0.8rem; color: #aaa; margin-top: 2px; }
 
-  /* ── Table/Chart toggle ── */
   .toggle-row { display: flex; justify-content: flex-end; margin-bottom: 12px; }
   .view-toggle { display: flex; border: 1.5px solid #ddd; border-radius: 8px; overflow: hidden; }
-  .view-toggle button {
-    padding: 5px 14px; font-size: 0.8rem; border: none; background: white; cursor: pointer; color: #888;
-    font-weight: 500; transition: background .15s, color .15s;
-  }
+  .view-toggle button { padding: 5px 14px; font-size: 0.8rem; border: none; background: white; cursor: pointer; color: #888; font-weight: 500; transition: background .15s, color .15s; }
   .view-toggle button.active { background: #1a1a2e; color: white; }
 
   table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
@@ -58,16 +49,23 @@
   .chart-wrap { position: relative; }
   .hidden { display: none !important; }
 
+  .scroll-table { max-height: 520px; overflow-y: auto; border: 1px solid #eee; border-radius: 8px; }
+  .scroll-table th { position: sticky; top: 0; }
+
+  .insights { grid-column: 1 / -1; background: #fffbf0; border: 1.5px solid #f5d87a; border-radius: 12px; padding: 20px 24px; }
+  .insights h3 { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: #b07d00; margin-bottom: 10px; }
+  .insights ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .insights li { font-size: 0.88rem; color: #555; line-height: 1.5; padding-left: 18px; position: relative; }
+  .insights li::before { content: '→'; position: absolute; left: 0; color: #e0193d; font-weight: 700; }
 </style>
 </head>
 <body>
 
 <header>
   <h1>Geo Locator Express — Global Production</h1>
-  <p>Adobe Analytics · Apr 27–30, 2026 · www.adobe.com/express</p>
+  <p>Adobe Analytics · Apr 27–29, 2026 (data through Apr 28 PST) · www.adobe.com/express</p>
 </header>
 
-<!-- Metric Tabs -->
 <nav class="tabs-bar">
   <button class="tab-btn active" data-tab="overview">Overview</button>
   <button class="tab-btn" data-tab="pageviews">Page Views</button>
@@ -76,75 +74,65 @@
   <button class="tab-btn" data-tab="marketselector">Market Selector</button>
 </nav>
 
-
-<!-- ═══════════════ OVERVIEW ═══════════════ -->
+<!-- ═══ OVERVIEW ═══ -->
 <div class="tab-panel active" id="tab-overview">
   <div class="grid">
     <div class="kpi-row">
-      <div class="kpi">
-        <div class="label">Total Page Views</div>
-        <div class="value">1.13M</div>
-        <div class="sub">All Express pages, Apr 27–30</div>
-      </div>
-      <div class="kpi">
-        <div class="label">GEO Modal Loads</div>
-        <div class="value">21,672</div>
-        <div class="sub">Region modal on-load events</div>
-      </div>
-      <div class="kpi">
-        <div class="label">Market Selector Opened</div>
-        <div class="value">379</div>
-        <div class="sub">market-selector:opened</div>
-      </div>
-      <div class="kpi">
-        <div class="label">Market Selector Dismissed</div>
-        <div class="value">482</div>
-        <div class="sub">market-selector:dismissed</div>
-      </div>
-      <div class="kpi">
-        <div class="label">Language Banner Shown</div>
-        <div class="value">33,068</div>
-        <div class="sub">language-banner events</div>
-      </div>
+      <div class="kpi"><div class="label">Total Page Views</div><div class="value">1.34M</div><div class="sub">All Express pages, Apr 27–28</div></div>
+      <div class="kpi"><div class="label">GEO Modal Loads</div><div class="value">26,169</div><div class="sub">Region modal on-load events</div></div>
+      <div class="kpi"><div class="label">Market Selector Opened</div><div class="value">811</div><div class="sub">market-selector:opened</div></div>
+      <div class="kpi"><div class="label">Market Selector Dismissed</div><div class="value">1,016</div><div class="sub">market-selector:dismissed</div></div>
+      <div class="kpi"><div class="label">Language Banner Shown</div><div class="value">42,341</div><div class="sub">language-banner events</div></div>
     </div>
 
     <div class="card">
-      <h2>Express Page Views by Week</h2>
-      <div class="subtitle">All /express pages on www.adobe.com</div>
+      <h2>Page Views — Daily</h2>
+      <div class="subtitle">All /express pages · Apr 27–28</div>
       <canvas id="ov-pageviews"></canvas>
     </div>
 
     <div class="card">
-      <h2>GEO Modal + Language Banner — Weekly</h2>
-      <div class="subtitle">Apr 27–30, 2026</div>
+      <h2>GEO Modal + Language Banner — Daily</h2>
+      <div class="subtitle">Both features active Apr 27–28</div>
       <canvas id="ov-geo-lang"></canvas>
     </div>
 
     <div class="card">
       <h2>Market Selector — Opened vs Dismissed</h2>
-      <div class="subtitle">Apr 27–30 · 861 total interactions</div>
+      <div class="subtitle">Apr 27–28 · 1,827 total interactions</div>
       <canvas id="ov-market"></canvas>
     </div>
 
     <div class="card">
-      <h2>Top GEO Modal Locales (Apr 27–30)</h2>
-      <div class="subtitle">Breakdown by routing locale</div>
+      <h2>Top GEO Modal Target Locales</h2>
+      <div class="subtitle">Combined Apr 27–28 · top 10 target locales</div>
       <canvas id="ov-geo-locales"></canvas>
+    </div>
+
+    <div class="insights">
+      <h3>Key Insights · Overview</h3>
+      <ul>
+        <li>Language Banner is the higher-volume surface: 42,341 banner events vs 26,169 GEO modal loads over the active period.</li>
+        <li>Spanish-speaking regions received the most GEO routing with ~7,250 modal loads across all Spanish country variants (VE, BO, SV, DO, UY, PA, PY…).</li>
+        <li>Market Selector skews ~56% dismissed vs ~44% opened — most users notice the selector but choose not to engage with it.</li>
+        <li>The US homepage (adobe.com/express/) drives 63% of all market-selector interactions — 1,152 of 1,827 — making it the primary discovery surface for the geo locator feature.</li>
+        <li><em>Note:</em> Apr 28 data is partial (day not yet complete in PST), so day-over-day comparisons are not drawn here.</li>
+      </ul>
     </div>
   </div>
 </div>
 
-<!-- ═══════════════ PAGE VIEWS ═══════════════ -->
+<!-- ═══ PAGE VIEWS ═══ -->
 <div class="tab-panel" id="tab-pageviews">
   <div class="grid">
     <div class="card full">
-      <h2>Express Page Views — Weekly Trend</h2>
-      <div class="subtitle">All /express pages on www.adobe.com · Apr 27–30, 2026</div>
+      <h2>Express Page Views — Daily</h2>
+      <div class="subtitle">All /express pages on www.adobe.com · Apr 27–28, 2026</div>
       <canvas id="pv-weekly" style="max-height:360px"></canvas>
     </div>
     <div class="card full">
-      <h2>Top 15 Pages by Market-Selector Interactions</h2>
-      <div class="subtitle">Custom Link Instances — market-selector:opened or dismissed</div>
+      <h2>Pages with Market-Selector Interactions</h2>
+      <div class="subtitle">Chart shows top 15 · Table shows all 67 pages · 1,827 total Custom Link Instances</div>
       <div class="toggle-row">
         <div class="view-toggle">
           <button class="active" onclick="switchView('pages','chart',this)">Chart</button>
@@ -152,29 +140,38 @@
         </div>
       </div>
       <div class="chart-wrap" id="pages-chart">
-        <canvas id="pv-toppages" style="max-height:380px"></canvas>
+        <canvas id="pv-toppages" style="height:520px; max-height:520px"></canvas>
       </div>
-      <div id="pages-table" class="hidden">
+      <div id="pages-table" class="hidden scroll-table">
         <table>
-          <thead><tr><th>#</th><th>Page URL</th><th>Instances</th></tr></thead>
+          <thead><tr><th>#</th><th>Page URL</th><th>Instances</th><th>%</th></tr></thead>
           <tbody id="pages-tbody"></tbody>
         </table>
       </div>
     </div>
+    <div class="insights">
+      <h3>Key Insights · Page Views</h3>
+      <ul>
+        <li>The US homepage (adobe.com/express/) dominated market-selector interactions at 1,152 of 1,827 total (63%) — by far the highest-volume entry point for the geo locator feature.</li>
+        <li>French Express (/fr/express/) was second at 99 interactions, more than 1.8× the next locale (es: 54). The French audience is the most engaged non-US market for the selector.</li>
+        <li>Top 5 pages (US, FR, ES, DE, /pricing) account for 1,395 interactions — 76% of all activity is concentrated on a handful of high-traffic pages.</li>
+        <li>The long tail is significant: 67 distinct pages had market-selector activity, with ~30 pages logging only 1–2 interactions — the feature surfaces across the full Express funnel including feature pages, /create/, /discover/, and education pages.</li>
+      </ul>
+    </div>
   </div>
 </div>
 
-<!-- ═══════════════ GEO MODAL ═══════════════ -->
+<!-- ═══ GEO MODAL ═══ -->
 <div class="tab-panel" id="tab-geomodal">
   <div class="grid">
     <div class="card full">
-      <h2>GEO Routing Modal — Weekly Load Events</h2>
-      <div class="subtitle">region-modal|locale events · Apr 27–30, 2026</div>
+      <h2>GEO Routing Modal — Daily Load Events</h2>
+      <div class="subtitle">region-modal|locale events · Apr 27–28, 2026</div>
       <canvas id="geo-weekly" style="max-height:320px"></canvas>
     </div>
     <div class="card full">
-      <h2>GEO Modal Locale Breakdown (Apr 27–30)</h2>
-      <div class="subtitle">Top routing locales by occurrences</div>
+      <h2>GEO Modal — All Target Locales (Apr 27–28 Combined)</h2>
+      <div class="subtitle">Aggregated by destination locale across all source countries · 17 distinct target locales</div>
       <div class="toggle-row">
         <div class="view-toggle">
           <button class="active" onclick="switchView('geo','chart',this)">Chart</button>
@@ -182,34 +179,81 @@
         </div>
       </div>
       <div class="chart-wrap" id="geo-chart">
-        <canvas id="geo-locales-detail" style="max-height:340px"></canvas>
+        <canvas id="geo-locales-detail" style="height:600px; max-height:600px"></canvas>
       </div>
-      <div id="geo-table" class="hidden">
+      <div id="geo-table" class="hidden scroll-table">
         <table>
-          <thead><tr><th>Locale Route</th><th>Occurrences</th><th>% of Total</th></tr></thead>
+          <thead><tr><th>Target Locale</th><th>Apr 27</th><th>Apr 28</th><th>Total</th><th>% of Total</th></tr></thead>
           <tbody id="geo-tbody"></tbody>
         </table>
       </div>
     </div>
+
+    <div class="card full">
+      <h2>Apr 27 — Locale Routes (Launch Day)</h2>
+      <div class="subtitle">Chart shows top 15 · Table shows all 88 routes · 16,846 total occurrences</div>
+      <div class="toggle-row">
+        <div class="view-toggle">
+          <button class="active" onclick="switchView('day1','chart',this)">Chart</button>
+          <button onclick="switchView('day1','table',this)">Table</button>
+        </div>
+      </div>
+      <div class="chart-wrap" id="day1-chart">
+        <canvas id="geo-day1" style="height:520px; max-height:520px"></canvas>
+      </div>
+      <div id="day1-table" class="hidden scroll-table">
+        <table>
+          <thead><tr><th>#</th><th>Source → Target</th><th>Visitor Country</th><th>Occurrences</th><th>%</th></tr></thead>
+          <tbody id="day1-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card full">
+      <h2>Apr 28 — Locale Routes (Day 2)</h2>
+      <div class="subtitle">Chart shows top 15 · Table shows all 105 routes · 9,323 total occurrences (partial day)</div>
+      <div class="toggle-row">
+        <div class="view-toggle">
+          <button class="active" onclick="switchView('day2','chart',this)">Chart</button>
+          <button onclick="switchView('day2','table',this)">Table</button>
+        </div>
+      </div>
+      <div class="chart-wrap" id="day2-chart">
+        <canvas id="geo-day2" style="height:520px; max-height:520px"></canvas>
+      </div>
+      <div id="day2-table" class="hidden scroll-table">
+        <table>
+          <thead><tr><th>#</th><th>Source → Target</th><th>Visitor Country</th><th>Occurrences</th><th>%</th></tr></thead>
+          <tbody id="day2-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="insights">
+      <h3>Key Insights · GEO Modal</h3>
+      <ul>
+        <li>Spanish-speaking regions led routing with ~7,250 combined loads — spread across Venezuela, Bolivia, El Salvador, Dominican Republic, Uruguay, Panama, Paraguay and more, reflecting the broad geographic reach of Spanish in Latin America.</li>
+        <li>Top 5 target locales (es, kr, fr, de, br) account for ~21,800 of 26,169 total loads — 83% of routing is concentrated in 5 destination locales out of 17.</li>
+        <li>French routing included substantial volumes from Morocco (MA: 785 combined) and Algeria (DZ: 499 combined) — French-speaking Africa is a meaningful audience segment.</li>
+        <li>Reverse routing (kr→us: 1,562 combined) is the largest non-US-sourced flow, suggesting Korean-locale visitors on the US site being routed back — a potential UX friction point worth investigating.</li>
+        <li>The long tail is wide: 88 distinct source→target routes on Apr 27 alone, reaching countries from Mongolia (MO) to Ireland (IE), Israel (IL), New Zealand (NZ), and Mexico (MX).</li>
+        <li>"Visitor Country" comes from Adobe Analytics' geo-IP lookup on the user's IP — independent of the locale they're routed to. This explains entries like <code>us→es · ve</code> (visitor in Venezuela on US site, routed to Spanish locale).</li>
+      </ul>
+    </div>
   </div>
 </div>
 
-<!-- ═══════════════ LANGUAGE BANNER ═══════════════ -->
+<!-- ═══ LANGUAGE BANNER ═══ -->
 <div class="tab-panel" id="tab-langbanner">
   <div class="grid">
-    <div class="card">
-      <h2>Language Banner Shown — Weekly Trend</h2>
-      <div class="subtitle">language-banner custom link events</div>
-      <canvas id="lb-weekly"></canvas>
-    </div>
-    <div class="card">
-      <h2>Top Language Banner Locales (Apr 27–30)</h2>
-      <div class="subtitle">Top 5 locale pairs</div>
-      <canvas id="lb-locales"></canvas>
+    <div class="card full">
+      <h2>Language Banner — Daily Trend</h2>
+      <div class="subtitle">language-banner custom link events · Apr 27–28</div>
+      <canvas id="lb-weekly" style="max-height:280px"></canvas>
     </div>
     <div class="card full">
-      <h2>Language Banner — All Locale Details (Apr 27–30)</h2>
-      <div class="subtitle">Full breakdown by locale pair</div>
+      <h2>Language Banner — Locale Pairs (Apr 27–28 Combined)</h2>
+      <div class="subtitle">Chart shows top 15 · Table shows all 41 distinct pairs · 42,341 total banner events</div>
       <div class="toggle-row">
         <div class="view-toggle">
           <button class="active" onclick="switchView('lb','chart',this)">Chart</button>
@@ -217,110 +261,272 @@
         </div>
       </div>
       <div class="chart-wrap" id="lb-chart">
-        <canvas id="lb-all" style="max-height:340px"></canvas>
+        <canvas id="lb-all" style="height:520px; max-height:520px"></canvas>
       </div>
-      <div id="lb-table" class="hidden">
+      <div id="lb-table" class="hidden scroll-table">
         <table>
-          <thead><tr><th>Locale Pair</th><th>Instances</th><th>% of Total</th></tr></thead>
+          <thead><tr><th>Locale Pair</th><th>Apr 27</th><th>Apr 28</th><th>Total</th><th>% of Total</th></tr></thead>
           <tbody id="lb-tbody"></tbody>
         </table>
       </div>
     </div>
+    <div class="insights">
+      <h3>Key Insights · Language Banner</h3>
+      <ul>
+        <li>es→us is the #1 pair with 6,724 combined events — Spanish-speaking users hitting the US site and being shown a banner to switch.</li>
+        <li>Top 5 pairs (es→us, us→es, br→us, id_id→us, de→us) account for 25,612 of 42,341 total banner events (60%).</li>
+        <li>"Close" interactions (users dismissing the banner without switching) totalled 452 — about 1.1% of all banner events, indicating most users engage with the destination suggestion rather than dismissing it.</li>
+        <li>Top 10 locale pairs accounted for 34,646 of 42,341 total (82%), showing the banner is highly concentrated in a small set of high-volume routing pairs.</li>
+        <li>Long-tail Continue clicks (es|Continue, us|Continue, jp|Continue, etc.) totalled 121 — users actively confirming their language choice rather than auto-switching.</li>
+        <li>The bidirectional flow is notable: us→es (5,179) is the second-largest pair, complementing es→us (6,724). The two-way switching suggests users are exploring both locales before settling.</li>
+      </ul>
+    </div>
   </div>
 </div>
 
-<!-- ═══════════════ MARKET SELECTOR ═══════════════ -->
+<!-- ═══ MARKET SELECTOR ═══ -->
 <div class="tab-panel" id="tab-marketselector">
   <div class="grid">
     <div class="card">
       <h2>Market Selector — Opened vs Dismissed</h2>
-      <div class="subtitle">Apr 27–30 · 861 total interactions</div>
+      <div class="subtitle">Apr 27–28 · 1,827 total interactions</div>
       <canvas id="ms-doughnut"></canvas>
     </div>
     <div class="card">
-      <h2>Market Selector — Weekly Activity</h2>
-      <div class="subtitle">Apr 27–30, 2026</div>
+      <h2>Market Selector — Daily Activity</h2>
+      <div class="subtitle">Opened vs Dismissed per day</div>
       <canvas id="ms-weekly"></canvas>
+    </div>
+    <div class="insights">
+      <h3>Key Insights · Market Selector</h3>
+      <ul>
+        <li>Dismissed (1,016) outnumbered Opened (811) — a 56/44 split — suggesting users notice the selector but choose not to engage with it in the majority of cases.</li>
+        <li>The US homepage drove 63% of all market-selector interactions (1,152 of 1,827), confirming it as the primary discovery surface for the geo locator feature.</li>
+        <li>Total interactions (1,827) are small relative to GEO Modal loads (26,169) — most users see the routing modal but only ~7% take the explicit action of opening or dismissing the market selector.</li>
+        <li>The opened-to-dismissed ratio is consistent across the active period — stable user behaviour rather than a launch-day novelty effect.</li>
+      </ul>
     </div>
   </div>
 </div>
 
 <script>
-// ── Data ──────────────────────────────────────────────────────────────
-const weekLabels = ['Apr 27', 'Apr 28', 'Apr 29', 'Apr 30'];
+const dayLabels = ['Apr 27', 'Apr 28'];
 
 const DATA = {
-  pageViews:   [907943, 218512, 0, 0],
-  geoModal:    [16846,   4868,  0, 0],
-  msOpened:    [318,      61,   0, 0],
-  msDismissed: [407,      75,   0, 0],
-  langBanner:  [24644,  8499,   0, 0],
+  pageViews:   [907943, 435942],
+  geoModal:    [16846,   9323],
+  msOpened:    [318,      493],
+  msDismissed: [407,      609],
+  langBanner:  [24644,  17697],
 
+  // ALL 17 target locales (combined Apr 27 + Apr 28, grouped by destination)
   geoLocales: [
-    { locale: 'us→kr',     value: 2766 },
-    { locale: 'us→es(ve)', value: 1826 },
-    { locale: 'us→br',     value: 1487 },
-    { locale: 'us→de',     value: 1384 },
-    { locale: 'us→nl',     value: 1307 },
+    { locale: 'es',     apr27: 5191, apr28: 2059 },
+    { locale: 'kr',     apr27: 1877, apr28: 1226 },
+    { locale: 'fr',     apr27: 1713, apr28: 1407 },
+    { locale: 'de',     apr27: 1400, apr28:  842 },
+    { locale: 'br',     apr27: 1621, apr28:  529 },
+    { locale: 'us',     apr27:  897, apr28:  665 },
+    { locale: 'it',     apr27:  651, apr28:  826 },
+    { locale: 'nl',     apr27: 1119, apr28:  255 },
+    { locale: 'jp',     apr27:  934, apr28:  297 },
+    { locale: 'in',     apr27:  548, apr28:  401 },
+    { locale: 'uk',     apr27:  476, apr28:  248 },
+    { locale: 'tw',     apr27:  183, apr28:  273 },
+    { locale: 'cn',     apr27:  152, apr28:  217 },
+    { locale: 'id_id',  apr27:   52, apr28:   59 },
+    { locale: 'se',     apr27:   15, apr28:    6 },
+    { locale: 'dk',     apr27:   14, apr28:    5 },
+    { locale: 'no',     apr27:    0, apr28:    8 },
   ],
 
+  // Apr 27 — all 88 routes
+  geoDay1: [
+    ['us→es','ve',1772],['us→kr','us',1753],['us→br','us',1414],['us→nl','us',1113],['us→de','us',1111],
+    ['kr→us','kr',897],['us→jp','us',858],['us→fr','us',782],['us→es','bo',729],['us→it','us',641],
+    ['us→es','sv',511],['us→es','do',463],['us→in','us',437],['br→es','br',387],['us→fr','ma',372],
+    ['us→es','uy',371],['us→es','pa',343],['us→es','py',316],['us→uk','us',304],['us→fr','dz',277],
+    ['us→es','il',188],['us→br','il',134],['us→de','pl',130],['in→uk','in',114],['us→fr','pl',101],
+    ['jp→kr','jp',81],['us→in','au',77],['us→fr','il',74],['us→cn','my',70],['us→tw','my',57],
+    ['us→tw','il',54],['es→de','es',49],['jp→cn','jp',47],['us→id_id','us',44],['us→de','il',44],
+    ['in→de','in',39],['es→fr','es',39],['us→tw','mo',39],['us→es','pl',36],['kr→jp','kr',33],
+    ['in→fr','in',28],['in→kr','in',28],['us→br','au',26],['it→de','it',25],['us→es','au',23],
+    ['jp→fr','jp',23],['jp→tw','jp',22],['de→br','ch',22],['us→jp','il',21],['us→cn','sg',20],
+    ['us→jp','nz',20],['de→es','ch',19],['us→in','nz',16],['us→se','us',15],['us→dk','us',14],
+    ['jp→uk','jp',13],['it→fr','it',13],['jp→br','jp',13],['de→es','de',12],['us→br','ca',11],
+    ['us→uk','pl',11],['fr→es','fr',10],['de→uk','de',10],['es→uk','es',10],['us→in','za',9],
+    ['us→tw','au',9],['es→it','es',9],['us→uk','il',9],['us→kr','nz',8],['us→es','nz',8],
+    ['us→id_id','au',8],['us→kr','au',7],['us→cn','il',7],['us→nl','pl',6],['de→cn','de',5],
+    ['jp→in','jp',5],['kr→fr','kr',4],['us→uk','ie',4],['jp→de','jp',3],['it→in','it',3],
+    ['in→cn','in',3],['us→es','ca',3],['us→jp','ie',2],['us→tw','sg',2],['us→it','il',1],
+    ['us→br','za',1],['es→uk','mx',1],['us→in','ng',1],['br→de','pt',1],['us→de','ie',1],
+  ],
+
+  // Apr 28 — all 105 routes
+  geoDay2: [
+    ['us→kr','us',1065],['us→it','us',749],['kr→us','kr',665],['us→es','ve',575],['us→de','us',513],
+    ['us→fr','us',456],['us→br','us',415],['us→fr','ma',413],['us→es','bo',274],['us→in','us',270],
+    ['us→fr','dz',222],['us→nl','us',219],['us→jp','us',197],['us→es','do',169],['us→es','pa',166],
+    ['br→es','br',163],['us→es','uy',148],['us→es','py',142],['us→de','pl',141],['us→es','sv',135],
+    ['us→uk','us',116],['jp→kr','jp',97],['us→tw','my',87],['us→fr','pl',72],['es→fr','es',72],
+    ['us→cn','my',67],['us→fr','il',67],['jp→cn','jp',67],['es→de','es',65],['us→in','au',61],
+    ['jp→tw','jp',60],['in→uk','in',57],['it→de','it',57],['us→es','pl',55],['us→cn','sg',55],
+    ['us→es','il',54],['us→id_id','us',50],['us→tw','il',46],['us→kr','nz',45],['it→fr','it',41],
+    ['de→es','de',40],['es→it','es',40],['us→br','il',39],['us→tw','mo',38],['kr→jp','kr',36],
+    ['it→es','it',36],['us→jp','il',35],['jp→br','jp',32],['us→jp','nz',29],['us→de','il',29],
+    ['us→br','au',28],['us→uk','pl',28],['fr→es','fr',26],['us→es','au',25],['de→es','ch',22],
+    ['es→nl','es',20],['us→it','pl',20],['in→de','in',19],['us→tw','sg',19],['us→in','ng',17],
+    ['jp→in','jp',17],['us→es','be',16],['us→nl','pl',16],['us→it','il',15],['jp→fr','jp',15],
+    ['us→in','nz',15],['de→fr','de',14],['kr→tw','kr',13],['es→uk','es',13],['us→cn','th',12],
+    ['us→in','my',12],['in→fr','in',11],['us→es','ca',11],['de→uk','de',11],['jp→uk','jp',9],
+    ['us→tw','au',9],['us→id_id','au',9],['us→de','be',8],['in→kr','in',8],['us→no','us',8],
+    ['us→uk','il',8],['us→cn','il',8],['us→fr','au',7],['us→fr','ie',7],['us→se','us',6],
+    ['us→br','ca',6],['nl→fr','nl',6],['br→de','pt',6],['us→in','za',5],['us→kr','au',5],
+    ['us→dk','us',5],['us→uk','ie',5],['it→br','it',5],['de→cn','de',4],['kr→fr','kr',4],
+    ['in→cn','in',4],['us→de','ie',4],['us→kr','il',3],['us→br','za',2],['us→kr','sg',2],
+    ['nl→it','nl',2],['it→in','it',2],['us→in','pl',2],['us→es','nz',2],['us→br','ie',1],
+    ['de→br','ch',1],['de→kr','de',1],['de→tw','de',1],['us→uk','ua',1],
+  ],
+
+  // ALL 41 language banner pairs
   lbLocales: [
-    { locale: 'es→us',  value: 5283 },
-    { locale: 'us→es',  value: 4055 },
-    { locale: 'br→us',  value: 3314 },
-    { locale: 'id→us',  value: 3300 },
-    { locale: 'de→us',  value: 2219 },
+    { pair: 'es→us',          apr27: 4822, apr28: 1902 },
+    { pair: 'us→es',          apr27: 3778, apr28: 1401 },
+    { pair: 'br→us',          apr27: 2975, apr28: 1551 },
+    { pair: 'id_id→us',       apr27: 2287, apr28: 2206 },
+    { pair: 'de→us',          apr27: 1335, apr28: 1810 },
+    { pair: 'fr→us',          apr27: 1554, apr28: 1256 },
+    { pair: 'us→br',          apr27: 1781, apr28:  911 },
+    { pair: 'us→id_id',       apr27: 1066, apr28:  895 },
+    { pair: 'it→us',          apr27:  707, apr28:  946 },
+    { pair: 'nl→us',          apr27:  537, apr28:  926 },
+    { pair: 'cn→us',          apr27:  529, apr28:  518 },
+    { pair: 'us→tw',          apr27:  528, apr28:  371 },
+    { pair: 'us→de',          apr27:  353, apr28:  441 },
+    { pair: 'se→us',          apr27:  218, apr28:  485 },
+    { pair: 'us→fr',          apr27:  343, apr28:  307 },
+    { pair: 'dk→us',          apr27:  144, apr28:  336 },
+    { pair: 'Close',          apr27:  252, apr28:  200 },
+    { pair: 'jp→us',          apr27:  267, apr28:  182 },
+    { pair: 'us→jp',          apr27:  282, apr28:  161 },
+    { pair: 'us→it',          apr27:  153, apr28:  207 },
+    { pair: 'us→nl',          apr27:  110, apr28:  203 },
+    { pair: 'fi→us',          apr27:   95, apr28:  204 },
+    { pair: 'us→cn',          apr27:  161, apr28:  111 },
+    { pair: 'tw→us',          apr27:  220, apr28:    1 },
+    { pair: 'us→se',          apr27:   19, apr28:   38 },
+    { pair: 'us→fi',          apr27:   21, apr28:   34 },
+    { pair: 'us→dk',          apr27:   20, apr28:   27 },
+    { pair: 'es|Continue',    apr27:   32, apr28:   12 },
+    { pair: 'us|Continue',    apr27:   22, apr28:   14 },
+    { pair: 'us→no',          apr27:    7, apr28:   12 },
+    { pair: 'fr-de',          apr27:    2, apr28:   13 },
+    { pair: 'jp|Continue',    apr27:    9, apr28:    5 },
+    { pair: 'fr|Continue',    apr27:    8, apr28:    3 },
+    { pair: 'de|Continue',    apr27:    2, apr28:    7 },
+    { pair: 'de-it',          apr27:    0, apr28:    6 },
+    { pair: 'nl-fr',          apr27:    1, apr28:    3 },
+    { pair: 'it-de',          apr27:    2, apr28:    2 },
+    { pair: 'it|Continue',    apr27:    0, apr28:    3 },
+    { pair: 'de-fr',          apr27:    2, apr28:    0 },
+    { pair: 'cn|Continue',    apr27:    0, apr28:    2 },
+    { pair: 'id_id|Continue', apr27:    0, apr28:    2 },
   ],
 
+  // ALL 67 pages with market-selector interactions
   topPages: [
-    ['adobe.com/express/', 467],
-    ['adobe.com/fr/express/', 73],
-    ['adobe.com/kr/express/', 30],
-    ['adobe.com/de/express/', 29],
-    ['adobe.com/express/pricing', 22],
-    ['adobe.com/uk/express/', 19],
-    ['adobe.com/jp/express/', 13],
-    ['adobe.com/in/express/', 13],
+    ['adobe.com/express/', 1152],
+    ['adobe.com/fr/express/', 99],
+    ['adobe.com/es/express/', 54],
+    ['adobe.com/de/express/', 52],
+    ['adobe.com/express/pricing', 38],
+    ['adobe.com/kr/express/', 35],
+    ['adobe.com/uk/express/', 29],
+    ['adobe.com/br/express/', 24],
+    ['adobe.com/se/express/', 24],
+    ['adobe.com/cn/express/', 23],
+    ['adobe.com/in/express/', 21],
+    ['adobe.com/it/express/', 21],
+    ['adobe.com/jp/express/', 20],
+    ['adobe.com/dk/express/', 20],
+    ['adobe.com/tw/express/', 18],
+    ['adobe.com/nl/express/', 15],
+    ['adobe.com/fi/express/', 13],
     ['adobe.com/express/business/teams', 13],
+    ['adobe.com/no/express/', 12],
     ['adobe.com/fr/express/pricing', 12],
     ['adobe.com/uk/express/learn/students', 10],
-    ['adobe.com/br/express/', 10],
-    ['adobe.com/se/express/', 9],
-    ['adobe.com/dk/express/', 9],
+    ['adobe.com/id_id/express/', 10],
     ['adobe.com/express/create/animation', 7],
+    ['adobe.com/express/feature/video/animation/audio', 6],
+    ['adobe.com/de/express/learn/students', 6],
+    ['adobe.com/fr/express/business', 6],
+    ['adobe.com/in/express/pricing', 6],
+    ['adobe.com/es/express/pricing', 5],
+    ['adobe.com/in/express/business/teams', 4],
+    ['adobe.com/jp/express/pricing', 3],
+    ['adobe.com/express/discover/wishes/birthday/friend', 3],
+    ['adobe.com/br/express/create/card/ecard', 3],
+    ['adobe.com/uk/express/pricing', 3],
+    ['adobe.com/uk/express/discover/ideas/goodbye', 2],
+    ['adobe.com/express/discover/messages/text/good-night', 2],
+    ['stock.adobe.com/cl/images/quaking-aspen-tree-vector-silhouettes…', 2],
+    ['adobe.com/kr/express/business/teams', 2],
+    ['adobe.com/cn/express/feature/image/remove-background', 2],
+    ['adobe.com/express/feature/video/convert', 2],
+    ['adobe.com/in/express/spotlight/education', 2],
+    ['adobe.com/express/feature/image/resize', 2],
+    ['adobe.com/de/education/express/', 2],
+    ['adobe.com/kr/express/learn/students', 2],
+    ['adobe.com/express/create/print/business-card', 2],
+    ['adobe.com/in/express/learn/students', 2],
+    ['adobe.com/express/feature/image/remove-background', 2],
+    ['adobe.com/kr/education/express/', 2],
+    ['adobe.com/fr/express/learn/blog', 2],
+    ['adobe.com/uk/express/business/teams', 2],
+    ['adobe.com/fr/express/business/teams', 2],
+    ['adobe.com/in/education/express/deployment', 2],
+    ['adobe.com/express/feature/image/change-background', 2],
+    ['adobe.com/kr/express/pricing', 2],
+    ['adobe.com/express/feature/video/change-speed', 2],
+    ['adobe.com/de/express/business/teams', 2],
+    ['adobe.com/br/express/pricing', 2],
+    ['adobe.com/fr/express/templates/planner/agenda', 2],
+    ['adobe.com/uk/express/business', 2],
+    ['adobe.com/express/feature/image/convert/svg', 2],
+    ['adobe.com/express/feature/image/convert/png-to-jpg', 2],
+    ['adobe.com/uk/express/discover/messages/pursuit-of-happiness', 1],
+    ['adobe.com/tw/express/pricing', 1],
+    ['adobe.com/express/feature/video/trim', 1],
+    ['adobe.com/de/express/pricing', 1],
+    ['adobe.com/in/express/discover/wishes/birthday/husband', 1],
+    ['adobe.com/uk/express/discover/ideas/plan/seating', 1],
   ],
 };
 
-
-// ── Palette ───────────────────────────────────────────────────────────
 const C = {
-  red:    'rgba(224,25,61,0.85)',
-  orange: 'rgba(255,107,53,0.85)',
-  blue:   'rgba(52,120,246,0.85)',
-  teal:   'rgba(0,180,160,0.85)',
-  purple: 'rgba(130,80,220,0.85)',
-  gold:   'rgba(240,180,0,0.85)',
-  pink:   'rgba(240,80,160,0.85)',
-  grey:   'rgba(180,180,180,0.5)',
+  red:'rgba(224,25,61,0.85)', orange:'rgba(255,107,53,0.85)', blue:'rgba(52,120,246,0.85)',
+  teal:'rgba(0,180,160,0.85)', purple:'rgba(130,80,220,0.85)', gold:'rgba(240,180,0,0.85)',
+  pink:'rgba(240,80,160,0.85)', grey:'rgba(180,180,180,0.5)', green:'rgba(80,200,120,0.85)',
 };
-const MULTI = [C.red, C.orange, C.blue, C.teal, C.purple, C.gold, C.pink, 'rgba(80,200,120,0.85)', 'rgba(100,160,240,0.85)', 'rgba(200,100,80,0.85)'];
-
-// ── Chart registry (for locale filtering) ─────────────────────────────
-const charts = {};
+const MULTI = [C.red, C.orange, C.blue, C.teal, C.purple, C.gold, C.pink, C.green, 'rgba(100,160,240,0.85)', 'rgba(200,100,80,0.85)'];
 
 function makeBar(id, labels, data, color, opts={}) {
   const ctx = document.getElementById(id);
   if (!ctx) return null;
-  const ch = new Chart(ctx, {
+  return new Chart(ctx, {
     type: 'bar',
-    data: { labels, datasets: [{ data, backgroundColor: color, borderRadius: 6, label: opts.label||'' }] },
+    data: { labels, datasets: [{ data, backgroundColor: color, borderRadius: 4, label: opts.label||'' }] },
     options: {
+      maintainAspectRatio: opts.maintainAspect !== false,
       plugins: { legend: { display: false } },
-      scales: { y: { beginAtZero: true, ticks: { callback: opts.yFmt||undefined } }, x: { ticks: { maxRotation: opts.rotate||0, font: { size: 11 } } } },
+      scales: {
+        y: { beginAtZero: true, ticks: { callback: opts.yFmt||undefined, font: { size: 10 }, autoSkip: false } },
+        x: { ticks: { maxRotation: opts.rotate||0, font: { size: 11 } } }
+      },
       indexAxis: opts.horizontal ? 'y' : 'x',
     }
   });
-  return ch;
 }
 
 function makeLine(id, labels, datasets, opts={}) {
@@ -336,18 +542,38 @@ function makeLine(id, labels, datasets, opts={}) {
   });
 }
 
-// ── Overview charts ───────────────────────────────────────────────────
-makeBar('ov-pageviews', weekLabels, DATA.pageViews, C.blue, { yFmt: v => (v/1e6).toFixed(1)+'M' });
+function makeStackedBar(id, labels, datasets, opts={}) {
+  const ctx = document.getElementById(id);
+  if (!ctx) return null;
+  return new Chart(ctx, {
+    type: 'bar',
+    data: { labels, datasets },
+    options: {
+      maintainAspectRatio: opts.maintainAspect !== false,
+      plugins: { legend: { position: 'bottom' } },
+      scales: {
+        x: { stacked: true, beginAtZero: true, ticks: { maxRotation: opts.rotate||0, font: { size: 11 } } },
+        y: { stacked: true, beginAtZero: true, ticks: { font: { size: 10 }, autoSkip: false } }
+      },
+      indexAxis: opts.horizontal ? 'y' : 'x',
+    }
+  });
+}
 
-makeLine('ov-geo-lang', weekLabels, [
+// ── Overview ───────────────────────────────────────────────────────────
+makeBar('ov-pageviews', dayLabels, DATA.pageViews, [C.blue, C.teal], { yFmt: v => (v/1e3).toFixed(0)+'K' });
+
+makeLine('ov-geo-lang', dayLabels, [
   { label: 'GEO Modal Loads', data: DATA.geoModal, borderColor: C.teal, backgroundColor: 'rgba(0,180,160,0.1)', fill: true, tension: 0.3, pointRadius: 5 },
   { label: 'Language Banner', data: DATA.langBanner, borderColor: C.purple, backgroundColor: 'rgba(130,80,220,0.1)', fill: true, tension: 0.3, pointRadius: 5 },
 ], { legend: { position: 'bottom' } });
 
-charts.ovGeoLocales = makeBar('ov-geo-locales',
-  DATA.geoLocales.map(d => d.locale),
-  DATA.geoLocales.map(d => d.value),
-  DATA.geoLocales.map((_, i) => MULTI[i]),
+// Overview chart shows top 10 only (for compactness) — full list in GEO Modal tab
+const ovTop10 = DATA.geoLocales.slice(0, 10);
+makeBar('ov-geo-locales',
+  ovTop10.map(d => d.locale),
+  ovTop10.map(d => d.apr27 + d.apr28),
+  ovTop10.map((_, i) => MULTI[i]),
   { horizontal: true }
 );
 
@@ -355,86 +581,136 @@ new Chart(document.getElementById('ov-market'), {
   type: 'doughnut',
   data: {
     labels: ['Dismissed (56%)', 'Opened (44%)'],
-    datasets: [{ data: [482, 379], backgroundColor: [C.orange, C.blue], borderWidth: 2 }]
+    datasets: [{ data: [1016, 811], backgroundColor: [C.orange, C.blue], borderWidth: 2 }]
   },
   options: { plugins: { legend: { position: 'bottom' }, tooltip: { callbacks: { label: ctx => ` ${ctx.label}: ${ctx.raw.toLocaleString()}` } } } }
 });
 
-// ── Page Views tab ────────────────────────────────────────────────────
-makeBar('pv-weekly', weekLabels, DATA.pageViews, C.blue, { yFmt: v => (v/1e6).toFixed(1)+'M' });
+// ── Page Views ─────────────────────────────────────────────────────────
+makeBar('pv-weekly', dayLabels, DATA.pageViews, [C.blue, C.teal], { yFmt: v => (v/1e3).toFixed(0)+'K' });
 
-charts.topPages = makeBar('pv-toppages',
-  DATA.topPages.map(p => p[0]),
-  DATA.topPages.map(p => p[1]),
-  C.red,
-  { rotate: 40 }
-);
+const pagesTotal = DATA.topPages.reduce((a, p) => a + p[1], 0);
+const pagesChart = DATA.topPages.slice(0, 15);
+new Chart(document.getElementById('pv-toppages'), {
+  type: 'bar',
+  data: {
+    labels: pagesChart.map(p => p[0]),
+    datasets: [{ data: pagesChart.map(p => p[1]), backgroundColor: C.red, borderRadius: 3 }]
+  },
+  options: {
+    maintainAspectRatio: false,
+    indexAxis: 'y',
+    plugins: { legend: { display: false } },
+    scales: {
+      y: { ticks: { font: { size: 10 }, autoSkip: false } },
+      x: { beginAtZero: true }
+    }
+  }
+});
 
-// populate table
 const pagesTbody = document.getElementById('pages-tbody');
 DATA.topPages.forEach(([url, val], i) => {
-  pagesTbody.innerHTML += `<tr><td>${i+1}</td><td>${url}</td><td>${val.toLocaleString()}</td></tr>`;
+  pagesTbody.innerHTML += `<tr><td>${i+1}</td><td>${url}</td><td>${val.toLocaleString()}</td><td>${((val/pagesTotal)*100).toFixed(2)}%</td></tr>`;
 });
 
-// ── GEO Modal tab ─────────────────────────────────────────────────────
-makeBar('geo-weekly', weekLabels, DATA.geoModal, C.teal, { yFmt: v => v.toLocaleString() });
+// ── GEO Modal ──────────────────────────────────────────────────────────
+makeBar('geo-weekly', dayLabels, DATA.geoModal, [C.teal, C.teal]);
 
-charts.geoLocalesDetail = makeBar('geo-locales-detail',
+// All 17 target locales, stacked
+makeStackedBar('geo-locales-detail',
   DATA.geoLocales.map(d => d.locale),
-  DATA.geoLocales.map(d => d.value),
-  DATA.geoLocales.map((_, i) => MULTI[i]),
-  { horizontal: true }
+  [
+    { label: 'Apr 27', data: DATA.geoLocales.map(d => d.apr27), backgroundColor: C.teal, borderRadius: 3 },
+    { label: 'Apr 28', data: DATA.geoLocales.map(d => d.apr28), backgroundColor: C.blue, borderRadius: 3 },
+  ],
+  { horizontal: true, maintainAspect: false }
 );
 
-const geoTotal = DATA.geoLocales.reduce((a, d) => a + d.value, 0);
+const geoTotal = DATA.geoLocales.reduce((a, d) => a + d.apr27 + d.apr28, 0);
 const geoTbody = document.getElementById('geo-tbody');
 DATA.geoLocales.forEach(d => {
-  geoTbody.innerHTML += `<tr><td>${d.locale}</td><td>${d.value.toLocaleString()}</td><td>${((d.value/geoTotal)*100).toFixed(1)}%</td></tr>`;
+  const total = d.apr27 + d.apr28;
+  geoTbody.innerHTML += `<tr><td>${d.locale}</td><td>${d.apr27.toLocaleString()}</td><td>${d.apr28.toLocaleString()}</td><td>${total.toLocaleString()}</td><td>${((total/geoTotal)*100).toFixed(1)}%</td></tr>`;
 });
 
-// ── Language Banner tab ───────────────────────────────────────────────
-makeLine('lb-weekly', weekLabels, [{
+function renderDayRoutes(canvasId, tbodyId, routes, total, color) {
+  const top15 = routes.slice(0, 15);
+  new Chart(document.getElementById(canvasId), {
+    type: 'bar',
+    data: {
+      labels: top15.map(r => `${r[0]} · ${r[1]}`),
+      datasets: [{ data: top15.map(r => r[2]), backgroundColor: color, borderRadius: 3 }]
+    },
+    options: {
+      maintainAspectRatio: false,
+      indexAxis: 'y',
+      plugins: { legend: { display: false } },
+      scales: {
+        y: { ticks: { font: { size: 10 }, autoSkip: false } },
+        x: { beginAtZero: true }
+      }
+    }
+  });
+
+  const tbody = document.getElementById(tbodyId);
+  routes.forEach((r, i) => {
+    tbody.innerHTML += `<tr><td>${i+1}</td><td>${r[0]}</td><td>${r[1].toUpperCase()}</td><td>${r[2].toLocaleString()}</td><td>${((r[2]/total)*100).toFixed(2)}%</td></tr>`;
+  });
+}
+
+renderDayRoutes('geo-day1', 'day1-tbody', DATA.geoDay1, 16846, C.red);
+renderDayRoutes('geo-day2', 'day2-tbody', DATA.geoDay2, 9323, C.orange);
+
+// ── Language Banner ────────────────────────────────────────────────────
+makeLine('lb-weekly', dayLabels, [{
   label: 'Banner Shown', data: DATA.langBanner,
   borderColor: C.purple, backgroundColor: 'rgba(130,80,220,0.12)', fill: true, tension: 0.3, pointRadius: 5,
 }]);
 
-charts.lbLocalesSmall = makeBar('lb-locales',
-  DATA.lbLocales.slice(0,5).map(d => d.locale),
-  DATA.lbLocales.slice(0,5).map(d => d.value),
-  DATA.lbLocales.slice(0,5).map((_, i) => MULTI[i]),
-  { horizontal: true }
+// Top 15 language banner pairs, stacked (table below shows all 41)
+const lbTop15 = DATA.lbLocales.slice(0, 15);
+makeStackedBar('lb-all',
+  lbTop15.map(d => d.pair),
+  [
+    { label: 'Apr 27', data: lbTop15.map(d => d.apr27), backgroundColor: C.purple, borderRadius: 3 },
+    { label: 'Apr 28', data: lbTop15.map(d => d.apr28), backgroundColor: C.pink, borderRadius: 3 },
+  ],
+  { horizontal: true, maintainAspect: false }
 );
 
-charts.lbAll = makeBar('lb-all',
-  DATA.lbLocales.map(d => d.locale),
-  DATA.lbLocales.map(d => d.value),
-  DATA.lbLocales.map((_, i) => MULTI[i]),
-  { horizontal: true }
-);
-
-const lbTotal = DATA.lbLocales.reduce((a, d) => a + d.value, 0);
+const lbTotal = DATA.lbLocales.reduce((a, d) => a + d.apr27 + d.apr28, 0);
 const lbTbody = document.getElementById('lb-tbody');
 DATA.lbLocales.forEach(d => {
-  lbTbody.innerHTML += `<tr><td>${d.locale}</td><td>${d.value.toLocaleString()}</td><td>${((d.value/lbTotal)*100).toFixed(1)}%</td></tr>`;
+  const total = d.apr27 + d.apr28;
+  lbTbody.innerHTML += `<tr><td>${d.pair}</td><td>${d.apr27.toLocaleString()}</td><td>${d.apr28.toLocaleString()}</td><td>${total.toLocaleString()}</td><td>${((total/lbTotal)*100).toFixed(2)}%</td></tr>`;
 });
 
-// ── Market Selector tab ───────────────────────────────────────────────
+// ── Market Selector ────────────────────────────────────────────────────
 new Chart(document.getElementById('ms-doughnut'), {
   type: 'doughnut',
   data: {
     labels: ['Dismissed', 'Opened'],
-    datasets: [{ data: [482, 379], backgroundColor: [C.orange, C.blue], borderWidth: 2 }]
+    datasets: [{ data: [1016, 811], backgroundColor: [C.orange, C.blue], borderWidth: 2 }]
   },
   options: { plugins: { legend: { position: 'bottom' }, tooltip: { callbacks: { label: ctx => ` ${ctx.label}: ${ctx.raw.toLocaleString()}` } } } }
 });
 
-makeBar('ms-weekly', weekLabels,
-  DATA.msOpened.map((v, i) => v + DATA.msDismissed[i]),
-  weekLabels.map((_, i) => i === 4 ? C.red : C.grey),
-  { label: 'Total Interactions' }
-);
+new Chart(document.getElementById('ms-weekly'), {
+  type: 'bar',
+  data: {
+    labels: dayLabels,
+    datasets: [
+      { label: 'Opened',    data: DATA.msOpened,    backgroundColor: C.blue,   borderRadius: 4 },
+      { label: 'Dismissed', data: DATA.msDismissed, backgroundColor: C.orange, borderRadius: 4 },
+    ]
+  },
+  options: {
+    plugins: { legend: { position: 'bottom' } },
+    scales: { x: { stacked: true }, y: { stacked: true, beginAtZero: true } }
+  }
+});
 
-// ── Tab switching ─────────────────────────────────────────────────────
+// ── Tab switching ──────────────────────────────────────────────────────
 document.querySelectorAll('.tab-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -444,16 +720,14 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
   });
 });
 
-// ── Chart/Table toggle ────────────────────────────────────────────────
 function switchView(key, mode, btn) {
   const chartEl = document.getElementById(key + '-chart');
   const tableEl = document.getElementById(key + '-table');
   btn.parentElement.querySelectorAll('button').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   if (mode === 'chart') { chartEl.classList.remove('hidden'); tableEl.classList.add('hidden'); }
-  else                  { chartEl.classList.add('hidden'); tableEl.classList.remove('hidden'); }
+  else                  { chartEl.classList.add('hidden');   tableEl.classList.remove('hidden'); }
 }
-
 </script>
 </body>
 </html>
