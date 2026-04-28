@@ -2,25 +2,61 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
 <title>Geo Locator Express — Global Production Report (Apr 2026)</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f4f5f7; color: #1a1a2e; }
+
   header { background: linear-gradient(135deg, #e0193d 0%, #ff6b35 100%); color: white; padding: 28px 40px; }
   header h1 { font-size: 1.6rem; font-weight: 700; }
   header p { font-size: 0.9rem; opacity: 0.85; margin-top: 4px; }
+
+  /* ── Metric Tabs ── */
+  .tabs-bar { background: white; border-bottom: 1px solid #eee; padding: 0 40px; display: flex; gap: 4px; }
+  .tab-btn {
+    padding: 14px 22px; font-size: 0.875rem; font-weight: 600; border: none; background: none;
+    cursor: pointer; color: #888; border-bottom: 3px solid transparent; transition: color .2s, border-color .2s;
+  }
+  .tab-btn:hover { color: #1a1a2e; }
+  .tab-btn.active { color: #e0193d; border-bottom-color: #e0193d; }
+
+  /* ── Layout ── */
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
   .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding: 32px 40px; max-width: 1400px; margin: 0 auto; }
+
   .card { background: white; border-radius: 12px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
   .card.full { grid-column: 1 / -1; }
   .card h2 { font-size: 0.95rem; font-weight: 600; color: #555; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
-  .card .subtitle { font-size: 0.78rem; color: #999; margin-bottom: 20px; }
+  .card .subtitle { font-size: 0.78rem; color: #999; margin-bottom: 16px; }
+
   .kpi-row { display: flex; gap: 16px; grid-column: 1 / -1; }
   .kpi { background: white; border-radius: 12px; padding: 20px 28px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); flex: 1; }
   .kpi .label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; color: #888; }
   .kpi .value { font-size: 2rem; font-weight: 700; margin-top: 4px; color: #1a1a2e; }
   .kpi .sub { font-size: 0.8rem; color: #aaa; margin-top: 2px; }
+
+  /* ── Table/Chart toggle ── */
+  .toggle-row { display: flex; justify-content: flex-end; margin-bottom: 12px; }
+  .view-toggle { display: flex; border: 1.5px solid #ddd; border-radius: 8px; overflow: hidden; }
+  .view-toggle button {
+    padding: 5px 14px; font-size: 0.8rem; border: none; background: white; cursor: pointer; color: #888;
+    font-weight: 500; transition: background .15s, color .15s;
+  }
+  .view-toggle button.active { background: #1a1a2e; color: white; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+  th { text-align: left; padding: 8px 12px; background: #f8f8f8; color: #666; font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: .04em; }
+  td { padding: 8px 12px; border-bottom: 1px solid #f0f0f0; color: #333; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #fafafa; }
+
   canvas { max-height: 320px; }
+  .chart-wrap { position: relative; }
+  .hidden { display: none !important; }
+
 </style>
 </head>
 <body>
@@ -30,93 +66,238 @@
   <p>Adobe Analytics · Apr 1–28, 2026 · www.adobe.com/express</p>
 </header>
 
-<div class="grid">
+<!-- Metric Tabs -->
+<nav class="tabs-bar">
+  <button class="tab-btn active" data-tab="overview">Overview</button>
+  <button class="tab-btn" data-tab="pageviews">Page Views</button>
+  <button class="tab-btn" data-tab="geomodal">GEO Modal</button>
+  <button class="tab-btn" data-tab="langbanner">Language Banner</button>
+  <button class="tab-btn" data-tab="marketselector">Market Selector</button>
+</nav>
 
-  <!-- KPI row -->
-  <div class="kpi-row">
-    <div class="kpi">
-      <div class="label">Total Page Views</div>
-      <div class="value">23.8M</div>
-      <div class="sub">All Express pages, Apr 2026</div>
+
+<!-- ═══════════════ OVERVIEW ═══════════════ -->
+<div class="tab-panel active" id="tab-overview">
+  <div class="grid">
+    <div class="kpi-row">
+      <div class="kpi">
+        <div class="label">Total Page Views</div>
+        <div class="value">23.8M</div>
+        <div class="sub">All Express pages, Apr 2026</div>
+      </div>
+      <div class="kpi">
+        <div class="label">GEO Modal Loads</div>
+        <div class="value">19,390</div>
+        <div class="sub">Region modal on-load events</div>
+      </div>
+      <div class="kpi">
+        <div class="label">Market Selector Opened</div>
+        <div class="value">333</div>
+        <div class="sub">market-selector:opened</div>
+      </div>
+      <div class="kpi">
+        <div class="label">Market Selector Dismissed</div>
+        <div class="value">426</div>
+        <div class="sub">market-selector:dismissed</div>
+      </div>
+      <div class="kpi">
+        <div class="label">Language Banner Shown</div>
+        <div class="value">27,623</div>
+        <div class="sub">language-banner events</div>
+      </div>
     </div>
-    <div class="kpi">
-      <div class="label">GEO Modal Loads</div>
-      <div class="value">19,390</div>
-      <div class="sub">Region modal on-load events</div>
+
+    <div class="card">
+      <h2>Express Page Views by Week</h2>
+      <div class="subtitle">All /express pages on www.adobe.com</div>
+      <canvas id="ov-pageviews"></canvas>
     </div>
-    <div class="kpi">
-      <div class="label">Market Selector Opened</div>
-      <div class="value">333</div>
-      <div class="sub">market-selector:opened</div>
+
+    <div class="card">
+      <h2>GEO Modal + Language Banner — Weekly</h2>
+      <div class="subtitle">Both features launched week of Apr 25</div>
+      <canvas id="ov-geo-lang"></canvas>
     </div>
-    <div class="kpi">
-      <div class="label">Market Selector Dismissed</div>
-      <div class="value">426</div>
-      <div class="sub">market-selector:dismissed</div>
+
+    <div class="card">
+      <h2>Market Selector — Opened vs Dismissed</h2>
+      <div class="subtitle">Apr 25 week (first week with activity)</div>
+      <canvas id="ov-market"></canvas>
     </div>
-    <div class="kpi">
-      <div class="label">Language Banner Shown</div>
-      <div class="value">27,623</div>
-      <div class="sub">language-banner events</div>
+
+    <div class="card">
+      <h2>Top GEO Modal Locales (Week of Apr 25)</h2>
+      <div class="subtitle">Breakdown by routing locale</div>
+      <canvas id="ov-geo-locales"></canvas>
     </div>
   </div>
+</div>
 
-  <!-- Chart 1: Express Page Views by Week -->
-  <div class="card">
-    <h2>Express Page Views by Week</h2>
-    <div class="subtitle">All /express pages on www.adobe.com</div>
-    <canvas id="pageViewsChart"></canvas>
+<!-- ═══════════════ PAGE VIEWS ═══════════════ -->
+<div class="tab-panel" id="tab-pageviews">
+  <div class="grid">
+    <div class="card full">
+      <h2>Express Page Views — Weekly Trend</h2>
+      <div class="subtitle">All /express pages on www.adobe.com · Apr 2026</div>
+      <canvas id="pv-weekly" style="max-height:360px"></canvas>
+    </div>
+    <div class="card full">
+      <h2>Top 15 Pages by Market-Selector Interactions</h2>
+      <div class="subtitle">Custom Link Instances — market-selector:opened or dismissed</div>
+      <div class="toggle-row">
+        <div class="view-toggle">
+          <button class="active" onclick="switchView('pages','chart',this)">Chart</button>
+          <button onclick="switchView('pages','table',this)">Table</button>
+        </div>
+      </div>
+      <div class="chart-wrap" id="pages-chart">
+        <canvas id="pv-toppages" style="max-height:380px"></canvas>
+      </div>
+      <div id="pages-table" class="hidden">
+        <table>
+          <thead><tr><th>#</th><th>Page URL</th><th>Instances</th></tr></thead>
+          <tbody id="pages-tbody"></tbody>
+        </table>
+      </div>
+    </div>
   </div>
+</div>
 
-  <!-- Chart 2: GEO Modal Occurrences by Week -->
-  <div class="card">
-    <h2>GEO Routing Modal — Weekly Load Events</h2>
-    <div class="subtitle">region-modal|locale events (launched Apr 25)</div>
-    <canvas id="geoModalChart"></canvas>
+<!-- ═══════════════ GEO MODAL ═══════════════ -->
+<div class="tab-panel" id="tab-geomodal">
+  <div class="grid">
+    <div class="card full">
+      <h2>GEO Routing Modal — Weekly Load Events</h2>
+      <div class="subtitle">region-modal|locale events · feature launched Apr 25</div>
+      <canvas id="geo-weekly" style="max-height:320px"></canvas>
+    </div>
+    <div class="card full">
+      <h2>GEO Modal Locale Breakdown (Week of Apr 25)</h2>
+      <div class="subtitle">Top routing locales by occurrences</div>
+      <div class="toggle-row">
+        <div class="view-toggle">
+          <button class="active" onclick="switchView('geo','chart',this)">Chart</button>
+          <button onclick="switchView('geo','table',this)">Table</button>
+        </div>
+      </div>
+      <div class="chart-wrap" id="geo-chart">
+        <canvas id="geo-locales-detail" style="max-height:340px"></canvas>
+      </div>
+      <div id="geo-table" class="hidden">
+        <table>
+          <thead><tr><th>Locale Route</th><th>Occurrences</th><th>% of Total</th></tr></thead>
+          <tbody id="geo-tbody"></tbody>
+        </table>
+      </div>
+    </div>
   </div>
+</div>
 
-  <!-- Chart 3: Top locales — GEO Modal (Apr 25 week) -->
-  <div class="card">
-    <h2>Top GEO Modal Locales (Week of Apr 25)</h2>
-    <div class="subtitle">Breakdown by routing locale</div>
-    <canvas id="geoLocalesChart"></canvas>
+<!-- ═══════════════ LANGUAGE BANNER ═══════════════ -->
+<div class="tab-panel" id="tab-langbanner">
+  <div class="grid">
+    <div class="card">
+      <h2>Language Banner Shown — Weekly Trend</h2>
+      <div class="subtitle">language-banner custom link events</div>
+      <canvas id="lb-weekly"></canvas>
+    </div>
+    <div class="card">
+      <h2>Top Language Banner Locales (Week of Apr 25)</h2>
+      <div class="subtitle">Top 5 locale pairs</div>
+      <canvas id="lb-locales"></canvas>
+    </div>
+    <div class="card full">
+      <h2>Language Banner — All Locale Details (Week of Apr 25)</h2>
+      <div class="subtitle">Full breakdown by locale pair</div>
+      <div class="toggle-row">
+        <div class="view-toggle">
+          <button class="active" onclick="switchView('lb','chart',this)">Chart</button>
+          <button onclick="switchView('lb','table',this)">Table</button>
+        </div>
+      </div>
+      <div class="chart-wrap" id="lb-chart">
+        <canvas id="lb-all" style="max-height:340px"></canvas>
+      </div>
+      <div id="lb-table" class="hidden">
+        <table>
+          <thead><tr><th>Locale Pair</th><th>Instances</th><th>% of Total</th></tr></thead>
+          <tbody id="lb-tbody"></tbody>
+        </table>
+      </div>
+    </div>
   </div>
+</div>
 
-  <!-- Chart 4: Market Selector Opened vs Dismissed -->
-  <div class="card">
-    <h2>Market Selector — Opened vs Dismissed</h2>
-    <div class="subtitle">Apr 25 week (first week with activity)</div>
-    <canvas id="marketSelectorChart"></canvas>
+<!-- ═══════════════ MARKET SELECTOR ═══════════════ -->
+<div class="tab-panel" id="tab-marketselector">
+  <div class="grid">
+    <div class="card">
+      <h2>Market Selector — Opened vs Dismissed</h2>
+      <div class="subtitle">Week of Apr 25 · 759 total interactions</div>
+      <canvas id="ms-doughnut"></canvas>
+    </div>
+    <div class="card">
+      <h2>Market Selector — Weekly Activity</h2>
+      <div class="subtitle">Both actions launched week of Apr 25</div>
+      <canvas id="ms-weekly"></canvas>
+    </div>
   </div>
-
-  <!-- Chart 5: Language Banner by Week -->
-  <div class="card">
-    <h2>Language Banner Shown — Weekly Trend</h2>
-    <div class="subtitle">language-banner custom link events</div>
-    <canvas id="langBannerWeekChart"></canvas>
-  </div>
-
-  <!-- Chart 6: Top Language Banner Locales (Apr 25 week) -->
-  <div class="card">
-    <h2>Top Language Banner Locales (Week of Apr 25)</h2>
-    <div class="subtitle">Top 5 locale pairs</div>
-    <canvas id="langBannerLocalesChart"></canvas>
-  </div>
-
-  <!-- Chart 7: Top pages by market-selector interactions -->
-  <div class="card full">
-    <h2>Top 15 Pages by Market-Selector Interactions</h2>
-    <div class="subtitle">Custom Link Instances (market-selector:opened or dismissed)</div>
-    <canvas id="topPagesChart" style="max-height:380px"></canvas>
-  </div>
-
 </div>
 
 <script>
-const weeks = ['2026-03-28', '2026-04-04', '2026-04-11', '2026-04-18', '2026-04-25'];
+// ── Data ──────────────────────────────────────────────────────────────
 const weekLabels = ['Mar 28', 'Apr 4', 'Apr 11', 'Apr 18', 'Apr 25'];
 
-const palette = {
+const DATA = {
+  pageViews:    [2331706, 5578434, 5623622, 6331879, 3973536],
+  geoModal:     [0, 0, 1, 5, 19384],
+  msOpened:     [0, 0, 0, 0, 333],
+  msDismissed:  [0, 0, 0, 0, 426],
+  langBanner:   [0, 14, 25, 31, 27554],
+
+  geoLocales: [
+    { locale: 'us→kr',     value: 2500 },
+    { locale: 'us→es(ve)', value: 1787 },
+    { locale: 'us→br',     value: 1454 },
+    { locale: 'us→de',     value: 1274 },
+    { locale: 'us→nl',     value: 1247 },
+  ],
+
+  lbLocales: [
+    { locale: 'es→us',    value: 5014 },
+    { locale: 'us→es',    value: 3894 },
+    { locale: 'br→us',    value: 3057 },
+    { locale: 'id→us',    value: 2727 },
+    { locale: 'us→br',    value: 1816 },
+    { locale: 'us→jp',    value:    4 },
+    { locale: 'us→cn',    value:    6 },
+    { locale: 'us→tw',    value:    3 },
+    { locale: 'us→fr',    value:    2 },
+    { locale: 'us→it',    value:    2 },
+  ],
+
+  topPages: [
+    ['adobe.com/express/', 391],
+    ['adobe.com/fr/express/', 72],
+    ['adobe.com/kr/express/', 29],
+    ['adobe.com/de/express/', 25],
+    ['adobe.com/express/pricing', 22],
+    ['adobe.com/uk/express/', 17],
+    ['adobe.com/jp/express/', 13],
+    ['adobe.com/express/business/teams', 13],
+    ['adobe.com/in/express/', 11],
+    ['adobe.com/uk/express/learn/students', 10],
+    ['adobe.com/br/express/', 9],
+    ['adobe.com/se/express/', 9],
+    ['adobe.com/dk/express/', 9],
+    ['adobe.com/fr/express/pricing', 8],
+    ['adobe.com/de/express/learn/students', 6],
+  ],
+};
+
+
+// ── Palette ───────────────────────────────────────────────────────────
+const C = {
   red:    'rgba(224,25,61,0.85)',
   orange: 'rgba(255,107,53,0.85)',
   blue:   'rgba(52,120,246,0.85)',
@@ -124,162 +305,159 @@ const palette = {
   purple: 'rgba(130,80,220,0.85)',
   gold:   'rgba(240,180,0,0.85)',
   pink:   'rgba(240,80,160,0.85)',
+  grey:   'rgba(180,180,180,0.5)',
 };
+const MULTI = [C.red, C.orange, C.blue, C.teal, C.purple, C.gold, C.pink, 'rgba(80,200,120,0.85)', 'rgba(100,160,240,0.85)', 'rgba(200,100,80,0.85)'];
 
-// 1. Express Page Views by Week
-new Chart(document.getElementById('pageViewsChart'), {
-  type: 'bar',
-  data: {
-    labels: weekLabels,
-    datasets: [{
-      label: 'Page Views',
-      data: [2331706, 5578434, 5623622, 6331879, 3973536],
-      backgroundColor: palette.blue,
-      borderRadius: 6,
-    }]
-  },
-  options: {
-    plugins: { legend: { display: false } },
-    scales: {
-      y: { ticks: { callback: v => (v/1e6).toFixed(1)+'M' } }
+// ── Chart registry (for locale filtering) ─────────────────────────────
+const charts = {};
+
+function makeBar(id, labels, data, color, opts={}) {
+  const ctx = document.getElementById(id);
+  if (!ctx) return null;
+  const ch = new Chart(ctx, {
+    type: 'bar',
+    data: { labels, datasets: [{ data, backgroundColor: color, borderRadius: 6, label: opts.label||'' }] },
+    options: {
+      plugins: { legend: { display: false } },
+      scales: { y: { beginAtZero: true, ticks: { callback: opts.yFmt||undefined } }, x: { ticks: { maxRotation: opts.rotate||0, font: { size: 11 } } } },
+      indexAxis: opts.horizontal ? 'y' : 'x',
     }
-  }
-});
+  });
+  return ch;
+}
 
-// 2. GEO Modal by Week
-new Chart(document.getElementById('geoModalChart'), {
-  type: 'bar',
-  data: {
-    labels: weekLabels,
-    datasets: [{
-      label: 'GEO Modal Loads',
-      data: [0, 0, 1, 5, 19384],
-      backgroundColor: palette.teal,
-      borderRadius: 6,
-    }]
-  },
-  options: {
-    plugins: { legend: { display: false } },
-    scales: { y: { beginAtZero: true } }
-  }
-});
+function makeLine(id, labels, datasets, opts={}) {
+  const ctx = document.getElementById(id);
+  if (!ctx) return null;
+  return new Chart(ctx, {
+    type: 'line',
+    data: { labels, datasets },
+    options: {
+      plugins: { legend: opts.legend || { display: false } },
+      scales: { y: { beginAtZero: true, ticks: { callback: opts.yFmt||undefined } } },
+    }
+  });
+}
 
-// 3. Top GEO Modal Locales (Apr 25 week)
-new Chart(document.getElementById('geoLocalesChart'), {
-  type: 'bar',
-  data: {
-    labels: ['us→kr', 'us→es (ve)', 'us→br', 'us→de', 'us→nl'],
-    datasets: [{
-      label: 'Occurrences',
-      data: [2500, 1787, 1454, 1274, 1247],
-      backgroundColor: [palette.red, palette.orange, palette.blue, palette.teal, palette.purple],
-      borderRadius: 6,
-    }]
-  },
-  options: {
-    indexAxis: 'y',
-    plugins: { legend: { display: false } },
-    scales: { x: { beginAtZero: true } }
-  }
-});
+// ── Overview charts ───────────────────────────────────────────────────
+makeBar('ov-pageviews', weekLabels, DATA.pageViews, C.blue, { yFmt: v => (v/1e6).toFixed(1)+'M' });
 
-// 4. Market Selector Opened vs Dismissed
-new Chart(document.getElementById('marketSelectorChart'), {
+makeLine('ov-geo-lang', weekLabels, [
+  { label: 'GEO Modal Loads', data: DATA.geoModal, borderColor: C.teal, backgroundColor: 'rgba(0,180,160,0.1)', fill: true, tension: 0.3, pointRadius: 5 },
+  { label: 'Language Banner', data: DATA.langBanner, borderColor: C.purple, backgroundColor: 'rgba(130,80,220,0.1)', fill: true, tension: 0.3, pointRadius: 5 },
+], { legend: { position: 'bottom' } });
+
+charts.ovGeoLocales = makeBar('ov-geo-locales',
+  DATA.geoLocales.map(d => d.locale),
+  DATA.geoLocales.map(d => d.value),
+  DATA.geoLocales.map((_, i) => MULTI[i]),
+  { horizontal: true }
+);
+
+new Chart(document.getElementById('ov-market'), {
   type: 'doughnut',
   data: {
     labels: ['Dismissed (56%)', 'Opened (44%)'],
-    datasets: [{
-      data: [426, 333],
-      backgroundColor: [palette.orange, palette.blue],
-      borderWidth: 2,
-    }]
+    datasets: [{ data: [426, 333], backgroundColor: [C.orange, C.blue], borderWidth: 2 }]
   },
-  options: {
-    plugins: {
-      legend: { position: 'bottom' },
-      tooltip: { callbacks: { label: ctx => ` ${ctx.label}: ${ctx.raw.toLocaleString()}` } }
-    }
-  }
+  options: { plugins: { legend: { position: 'bottom' }, tooltip: { callbacks: { label: ctx => ` ${ctx.label}: ${ctx.raw.toLocaleString()}` } } } }
 });
 
-// 5. Language Banner by Week
-new Chart(document.getElementById('langBannerWeekChart'), {
-  type: 'line',
+// ── Page Views tab ────────────────────────────────────────────────────
+makeBar('pv-weekly', weekLabels, DATA.pageViews, C.blue, { yFmt: v => (v/1e6).toFixed(1)+'M' });
+
+charts.topPages = makeBar('pv-toppages',
+  DATA.topPages.map(p => p[0]),
+  DATA.topPages.map(p => p[1]),
+  C.red,
+  { rotate: 40 }
+);
+
+// populate table
+const pagesTbody = document.getElementById('pages-tbody');
+DATA.topPages.forEach(([url, val], i) => {
+  pagesTbody.innerHTML += `<tr><td>${i+1}</td><td>${url}</td><td>${val.toLocaleString()}</td></tr>`;
+});
+
+// ── GEO Modal tab ─────────────────────────────────────────────────────
+makeBar('geo-weekly', weekLabels, DATA.geoModal, C.teal, { yFmt: v => v.toLocaleString() });
+
+charts.geoLocalesDetail = makeBar('geo-locales-detail',
+  DATA.geoLocales.map(d => d.locale),
+  DATA.geoLocales.map(d => d.value),
+  DATA.geoLocales.map((_, i) => MULTI[i]),
+  { horizontal: true }
+);
+
+const geoTotal = DATA.geoLocales.reduce((a, d) => a + d.value, 0);
+const geoTbody = document.getElementById('geo-tbody');
+DATA.geoLocales.forEach(d => {
+  geoTbody.innerHTML += `<tr><td>${d.locale}</td><td>${d.value.toLocaleString()}</td><td>${((d.value/geoTotal)*100).toFixed(1)}%</td></tr>`;
+});
+
+// ── Language Banner tab ───────────────────────────────────────────────
+makeLine('lb-weekly', weekLabels, [{
+  label: 'Banner Shown', data: DATA.langBanner,
+  borderColor: C.purple, backgroundColor: 'rgba(130,80,220,0.12)', fill: true, tension: 0.3, pointRadius: 5,
+}]);
+
+charts.lbLocalesSmall = makeBar('lb-locales',
+  DATA.lbLocales.slice(0,5).map(d => d.locale),
+  DATA.lbLocales.slice(0,5).map(d => d.value),
+  DATA.lbLocales.slice(0,5).map((_, i) => MULTI[i]),
+  { horizontal: true }
+);
+
+charts.lbAll = makeBar('lb-all',
+  DATA.lbLocales.map(d => d.locale),
+  DATA.lbLocales.map(d => d.value),
+  DATA.lbLocales.map((_, i) => MULTI[i]),
+  { horizontal: true }
+);
+
+const lbTotal = DATA.lbLocales.reduce((a, d) => a + d.value, 0);
+const lbTbody = document.getElementById('lb-tbody');
+DATA.lbLocales.forEach(d => {
+  lbTbody.innerHTML += `<tr><td>${d.locale}</td><td>${d.value.toLocaleString()}</td><td>${((d.value/lbTotal)*100).toFixed(1)}%</td></tr>`;
+});
+
+// ── Market Selector tab ───────────────────────────────────────────────
+new Chart(document.getElementById('ms-doughnut'), {
+  type: 'doughnut',
   data: {
-    labels: weekLabels,
-    datasets: [{
-      label: 'Banner Shown',
-      data: [0, 14, 25, 31, 27554],
-      borderColor: palette.purple,
-      backgroundColor: 'rgba(130,80,220,0.12)',
-      fill: true,
-      tension: 0.3,
-      pointRadius: 5,
-    }]
+    labels: ['Dismissed', 'Opened'],
+    datasets: [{ data: [426, 333], backgroundColor: [C.orange, C.blue], borderWidth: 2 }]
   },
-  options: {
-    plugins: { legend: { display: false } },
-    scales: { y: { beginAtZero: true } }
-  }
+  options: { plugins: { legend: { position: 'bottom' }, tooltip: { callbacks: { label: ctx => ` ${ctx.label}: ${ctx.raw.toLocaleString()}` } } } }
 });
 
-// 6. Top Language Banner Locales (Apr 25 week)
-new Chart(document.getElementById('langBannerLocalesChart'), {
-  type: 'bar',
-  data: {
-    labels: ['es→us', 'us→es', 'br→us', 'id_id→us', 'us→br'],
-    datasets: [{
-      label: 'Instances',
-      data: [5014, 3894, 3057, 2727, 1816],
-      backgroundColor: [palette.red, palette.orange, palette.teal, palette.blue, palette.gold],
-      borderRadius: 6,
-    }]
-  },
-  options: {
-    indexAxis: 'y',
-    plugins: { legend: { display: false } },
-    scales: { x: { beginAtZero: true } }
-  }
+makeBar('ms-weekly', weekLabels,
+  DATA.msOpened.map((v, i) => v + DATA.msDismissed[i]),
+  weekLabels.map((_, i) => i === 4 ? C.red : C.grey),
+  { label: 'Total Interactions' }
+);
+
+// ── Tab switching ─────────────────────────────────────────────────────
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+  });
 });
 
-// 7. Top 15 pages by market-selector interactions
-const pages = [
-  ['adobe.com/express/', 391],
-  ['adobe.com/fr/express/', 72],
-  ['adobe.com/kr/express/', 29],
-  ['adobe.com/de/express/', 25],
-  ['adobe.com/express/pricing', 22],
-  ['adobe.com/uk/express/', 17],
-  ['adobe.com/jp/express/', 13],
-  ['adobe.com/express/business/teams', 13],
-  ['adobe.com/in/express/', 11],
-  ['adobe.com/uk/express/learn/students', 10],
-  ['adobe.com/br/express/', 9],
-  ['adobe.com/se/express/', 9],
-  ['adobe.com/dk/express/', 9],
-  ['adobe.com/fr/express/pricing', 8],
-  ['adobe.com/de/express/learn/students', 6],
-];
+// ── Chart/Table toggle ────────────────────────────────────────────────
+function switchView(key, mode, btn) {
+  const chartEl = document.getElementById(key + '-chart');
+  const tableEl = document.getElementById(key + '-table');
+  btn.parentElement.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  if (mode === 'chart') { chartEl.classList.remove('hidden'); tableEl.classList.add('hidden'); }
+  else                  { chartEl.classList.add('hidden'); tableEl.classList.remove('hidden'); }
+}
 
-new Chart(document.getElementById('topPagesChart'), {
-  type: 'bar',
-  data: {
-    labels: pages.map(p => p[0]),
-    datasets: [{
-      label: 'Custom Link Instances',
-      data: pages.map(p => p[1]),
-      backgroundColor: palette.red,
-      borderRadius: 6,
-    }]
-  },
-  options: {
-    plugins: { legend: { display: false } },
-    scales: {
-      x: { ticks: { maxRotation: 40, font: { size: 11 } } },
-      y: { beginAtZero: true }
-    }
-  }
-});
 </script>
 </body>
 </html>
