@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="robots" content="noindex, nofollow">
-<title>Geo Locator Express — Global Production Report (Apr 2026)</title>
+<title>Geo Locator Express — Global Production Report (Apr 27–30, 2026)</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -63,7 +64,7 @@
 
 <header>
   <h1>Geo Locator Express — Global Production</h1>
-  <p>Adobe Analytics · Apr 1–28, 2026 · www.adobe.com/express</p>
+  <p>Adobe Analytics · Apr 27–30, 2026 · www.adobe.com/express</p>
 </header>
 
 <!-- Metric Tabs -->
@@ -82,27 +83,27 @@
     <div class="kpi-row">
       <div class="kpi">
         <div class="label">Total Page Views</div>
-        <div class="value">23.8M</div>
-        <div class="sub">All Express pages, Apr 2026</div>
+        <div class="value">1.09M</div>
+        <div class="sub">All Express pages, Apr 27–30</div>
       </div>
       <div class="kpi">
         <div class="label">GEO Modal Loads</div>
-        <div class="value">19,390</div>
+        <div class="value">20,992</div>
         <div class="sub">Region modal on-load events</div>
       </div>
       <div class="kpi">
         <div class="label">Market Selector Opened</div>
-        <div class="value">333</div>
+        <div class="value">375</div>
         <div class="sub">market-selector:opened</div>
       </div>
       <div class="kpi">
         <div class="label">Market Selector Dismissed</div>
-        <div class="value">426</div>
+        <div class="value">478</div>
         <div class="sub">market-selector:dismissed</div>
       </div>
       <div class="kpi">
         <div class="label">Language Banner Shown</div>
-        <div class="value">27,623</div>
+        <div class="value">31,573</div>
         <div class="sub">language-banner events</div>
       </div>
     </div>
@@ -115,18 +116,18 @@
 
     <div class="card">
       <h2>GEO Modal + Language Banner — Weekly</h2>
-      <div class="subtitle">Both features launched week of Apr 25</div>
+      <div class="subtitle">Apr 27–30, 2026</div>
       <canvas id="ov-geo-lang"></canvas>
     </div>
 
     <div class="card">
       <h2>Market Selector — Opened vs Dismissed</h2>
-      <div class="subtitle">Apr 25 week (first week with activity)</div>
+      <div class="subtitle">Apr 27–30 · 853 total interactions</div>
       <canvas id="ov-market"></canvas>
     </div>
 
     <div class="card">
-      <h2>Top GEO Modal Locales (Week of Apr 25)</h2>
+      <h2>Top GEO Modal Locales (Apr 27–30)</h2>
       <div class="subtitle">Breakdown by routing locale</div>
       <canvas id="ov-geo-locales"></canvas>
     </div>
@@ -138,7 +139,7 @@
   <div class="grid">
     <div class="card full">
       <h2>Express Page Views — Weekly Trend</h2>
-      <div class="subtitle">All /express pages on www.adobe.com · Apr 2026</div>
+      <div class="subtitle">All /express pages on www.adobe.com · Apr 27–30, 2026</div>
       <canvas id="pv-weekly" style="max-height:360px"></canvas>
     </div>
     <div class="card full">
@@ -168,11 +169,11 @@
   <div class="grid">
     <div class="card full">
       <h2>GEO Routing Modal — Weekly Load Events</h2>
-      <div class="subtitle">region-modal|locale events · feature launched Apr 25</div>
+      <div class="subtitle">region-modal|locale events · Apr 27–30, 2026</div>
       <canvas id="geo-weekly" style="max-height:320px"></canvas>
     </div>
     <div class="card full">
-      <h2>GEO Modal Locale Breakdown (Week of Apr 25)</h2>
+      <h2>GEO Modal Locale Breakdown (Apr 27–30)</h2>
       <div class="subtitle">Top routing locales by occurrences</div>
       <div class="toggle-row">
         <div class="view-toggle">
@@ -202,12 +203,12 @@
       <canvas id="lb-weekly"></canvas>
     </div>
     <div class="card">
-      <h2>Top Language Banner Locales (Week of Apr 25)</h2>
+      <h2>Top Language Banner Locales (Apr 27–30)</h2>
       <div class="subtitle">Top 5 locale pairs</div>
       <canvas id="lb-locales"></canvas>
     </div>
     <div class="card full">
-      <h2>Language Banner — All Locale Details (Week of Apr 25)</h2>
+      <h2>Language Banner — All Locale Details (Apr 27–30)</h2>
       <div class="subtitle">Full breakdown by locale pair</div>
       <div class="toggle-row">
         <div class="view-toggle">
@@ -233,12 +234,12 @@
   <div class="grid">
     <div class="card">
       <h2>Market Selector — Opened vs Dismissed</h2>
-      <div class="subtitle">Week of Apr 25 · 759 total interactions</div>
+      <div class="subtitle">Apr 27–30 · 853 total interactions</div>
       <canvas id="ms-doughnut"></canvas>
     </div>
     <div class="card">
       <h2>Market Selector — Weekly Activity</h2>
-      <div class="subtitle">Both actions launched week of Apr 25</div>
+      <div class="subtitle">Apr 27–30, 2026</div>
       <canvas id="ms-weekly"></canvas>
     </div>
   </div>
@@ -246,52 +247,47 @@
 
 <script>
 // ── Data ──────────────────────────────────────────────────────────────
-const weekLabels = ['Mar 28', 'Apr 4', 'Apr 11', 'Apr 18', 'Apr 25'];
+const weekLabels = ['Apr 27–30'];
 
 const DATA = {
-  pageViews:    [2331706, 5578434, 5623622, 6331879, 3973536],
-  geoModal:     [0, 0, 1, 5, 19384],
-  msOpened:     [0, 0, 0, 0, 333],
-  msDismissed:  [0, 0, 0, 0, 426],
-  langBanner:   [0, 14, 25, 31, 27554],
+  pageViews:   [1089492],
+  geoModal:    [20992],
+  msOpened:    [375],
+  msDismissed: [478],
+  langBanner:  [31573],
 
   geoLocales: [
-    { locale: 'us→kr',     value: 2500 },
-    { locale: 'us→es(ve)', value: 1787 },
-    { locale: 'us→br',     value: 1454 },
-    { locale: 'us→de',     value: 1274 },
-    { locale: 'us→nl',     value: 1247 },
+    { locale: 'us→kr',     value: 2766 },
+    { locale: 'us→es(ve)', value: 1826 },
+    { locale: 'us→br',     value: 1487 },
+    { locale: 'us→de',     value: 1384 },
+    { locale: 'us→nl',     value: 1307 },
   ],
 
   lbLocales: [
-    { locale: 'es→us',    value: 5014 },
-    { locale: 'us→es',    value: 3894 },
-    { locale: 'br→us',    value: 3057 },
-    { locale: 'id→us',    value: 2727 },
-    { locale: 'us→br',    value: 1816 },
-    { locale: 'us→jp',    value:    4 },
-    { locale: 'us→cn',    value:    6 },
-    { locale: 'us→tw',    value:    3 },
-    { locale: 'us→fr',    value:    2 },
-    { locale: 'us→it',    value:    2 },
+    { locale: 'es→us',  value: 5283 },
+    { locale: 'us→es',  value: 4055 },
+    { locale: 'br→us',  value: 3314 },
+    { locale: 'id→us',  value: 3300 },
+    { locale: 'de→us',  value: 2219 },
   ],
 
   topPages: [
-    ['adobe.com/express/', 391],
-    ['adobe.com/fr/express/', 72],
-    ['adobe.com/kr/express/', 29],
-    ['adobe.com/de/express/', 25],
+    ['adobe.com/express/', 463],
+    ['adobe.com/fr/express/', 73],
+    ['adobe.com/kr/express/', 30],
+    ['adobe.com/de/express/', 29],
     ['adobe.com/express/pricing', 22],
-    ['adobe.com/uk/express/', 17],
+    ['adobe.com/uk/express/', 19],
     ['adobe.com/jp/express/', 13],
+    ['adobe.com/in/express/', 13],
     ['adobe.com/express/business/teams', 13],
-    ['adobe.com/in/express/', 11],
+    ['adobe.com/fr/express/pricing', 12],
     ['adobe.com/uk/express/learn/students', 10],
-    ['adobe.com/br/express/', 9],
+    ['adobe.com/br/express/', 10],
     ['adobe.com/se/express/', 9],
     ['adobe.com/dk/express/', 9],
-    ['adobe.com/fr/express/pricing', 8],
-    ['adobe.com/de/express/learn/students', 6],
+    ['adobe.com/express/create/animation', 7],
   ],
 };
 
@@ -359,7 +355,7 @@ new Chart(document.getElementById('ov-market'), {
   type: 'doughnut',
   data: {
     labels: ['Dismissed (56%)', 'Opened (44%)'],
-    datasets: [{ data: [426, 333], backgroundColor: [C.orange, C.blue], borderWidth: 2 }]
+    datasets: [{ data: [478, 375], backgroundColor: [C.orange, C.blue], borderWidth: 2 }]
   },
   options: { plugins: { legend: { position: 'bottom' }, tooltip: { callbacks: { label: ctx => ` ${ctx.label}: ${ctx.raw.toLocaleString()}` } } } }
 });
@@ -427,7 +423,7 @@ new Chart(document.getElementById('ms-doughnut'), {
   type: 'doughnut',
   data: {
     labels: ['Dismissed', 'Opened'],
-    datasets: [{ data: [426, 333], backgroundColor: [C.orange, C.blue], borderWidth: 2 }]
+    datasets: [{ data: [478, 375], backgroundColor: [C.orange, C.blue], borderWidth: 2 }]
   },
   options: { plugins: { legend: { position: 'bottom' }, tooltip: { callbacks: { label: ctx => ` ${ctx.label}: ${ctx.raw.toLocaleString()}` } } } }
 });
