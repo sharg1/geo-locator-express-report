@@ -83,27 +83,27 @@
     <div class="kpi-row">
       <div class="kpi">
         <div class="label">Total Page Views</div>
-        <div class="value">1.09M</div>
+        <div class="value">1.13M</div>
         <div class="sub">All Express pages, Apr 27–30</div>
       </div>
       <div class="kpi">
         <div class="label">GEO Modal Loads</div>
-        <div class="value">20,992</div>
+        <div class="value">21,672</div>
         <div class="sub">Region modal on-load events</div>
       </div>
       <div class="kpi">
         <div class="label">Market Selector Opened</div>
-        <div class="value">375</div>
+        <div class="value">379</div>
         <div class="sub">market-selector:opened</div>
       </div>
       <div class="kpi">
         <div class="label">Market Selector Dismissed</div>
-        <div class="value">478</div>
+        <div class="value">482</div>
         <div class="sub">market-selector:dismissed</div>
       </div>
       <div class="kpi">
         <div class="label">Language Banner Shown</div>
-        <div class="value">31,573</div>
+        <div class="value">33,068</div>
         <div class="sub">language-banner events</div>
       </div>
     </div>
@@ -122,7 +122,7 @@
 
     <div class="card">
       <h2>Market Selector — Opened vs Dismissed</h2>
-      <div class="subtitle">Apr 27–30 · 853 total interactions</div>
+      <div class="subtitle">Apr 27–30 · 861 total interactions</div>
       <canvas id="ov-market"></canvas>
     </div>
 
@@ -234,7 +234,7 @@
   <div class="grid">
     <div class="card">
       <h2>Market Selector — Opened vs Dismissed</h2>
-      <div class="subtitle">Apr 27–30 · 853 total interactions</div>
+      <div class="subtitle">Apr 27–30 · 861 total interactions</div>
       <canvas id="ms-doughnut"></canvas>
     </div>
     <div class="card">
@@ -247,14 +247,14 @@
 
 <script>
 // ── Data ──────────────────────────────────────────────────────────────
-const weekLabels = ['Apr 27–30'];
+const weekLabels = ['Apr 27', 'Apr 28', 'Apr 29', 'Apr 30'];
 
 const DATA = {
-  pageViews:   [1089492],
-  geoModal:    [20992],
-  msOpened:    [375],
-  msDismissed: [478],
-  langBanner:  [31573],
+  pageViews:   [907943, 218512, 0, 0],
+  geoModal:    [16846,   4868,  0, 0],
+  msOpened:    [318,      61,   0, 0],
+  msDismissed: [407,      75,   0, 0],
+  langBanner:  [24644,  8499,   0, 0],
 
   geoLocales: [
     { locale: 'us→kr',     value: 2766 },
@@ -273,7 +273,7 @@ const DATA = {
   ],
 
   topPages: [
-    ['adobe.com/express/', 463],
+    ['adobe.com/express/', 467],
     ['adobe.com/fr/express/', 73],
     ['adobe.com/kr/express/', 30],
     ['adobe.com/de/express/', 29],
@@ -355,7 +355,7 @@ new Chart(document.getElementById('ov-market'), {
   type: 'doughnut',
   data: {
     labels: ['Dismissed (56%)', 'Opened (44%)'],
-    datasets: [{ data: [478, 375], backgroundColor: [C.orange, C.blue], borderWidth: 2 }]
+    datasets: [{ data: [482, 379], backgroundColor: [C.orange, C.blue], borderWidth: 2 }]
   },
   options: { plugins: { legend: { position: 'bottom' }, tooltip: { callbacks: { label: ctx => ` ${ctx.label}: ${ctx.raw.toLocaleString()}` } } } }
 });
@@ -423,7 +423,7 @@ new Chart(document.getElementById('ms-doughnut'), {
   type: 'doughnut',
   data: {
     labels: ['Dismissed', 'Opened'],
-    datasets: [{ data: [478, 375], backgroundColor: [C.orange, C.blue], borderWidth: 2 }]
+    datasets: [{ data: [482, 379], backgroundColor: [C.orange, C.blue], borderWidth: 2 }]
   },
   options: { plugins: { legend: { position: 'bottom' }, tooltip: { callbacks: { label: ctx => ` ${ctx.label}: ${ctx.raw.toLocaleString()}` } } } }
 });
